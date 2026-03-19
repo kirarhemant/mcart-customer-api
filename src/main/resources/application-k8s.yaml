@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mcart
+    username: mcart_user
+    password: str0ngP@ss
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.format_sql: true
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Identity Platform / Firebase issuer
+          issuer-uri: https://securetoken.google.com/${GCP_PROJECT_ID:nagp-demo-487019}
+          # Optional: give Spring an explicit JWKs endpoint if discovery fails at startup
+          jwk-set-uri: https://www.googleapis.com/robot/v1/metadata/jwk/securetoken@system.gserviceaccount.com
